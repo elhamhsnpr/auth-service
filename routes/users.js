@@ -6,7 +6,7 @@ const express = require('express')
 const router = express.Router()
 
 //Autorizition
-router.post('/getInfo',
+router.post('/authUser',
     JWT.verifyToken,
     (req, res) => {
 
