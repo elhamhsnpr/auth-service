@@ -1,9 +1,10 @@
 const express = require("express");
-mongoConnect = require('./db/index');
+
 
 const signUpRoutes = require('./routes/sign-up');
 const singInRoutes =require('./routes/sign-in');
 const usersRoutes =require('./routes/users');
+const adminRoutes =require('./routes/admin');
 
 
 
@@ -20,8 +21,11 @@ app.use(signUpRoutes);
 //Sign In Route
 app.use(singInRoutes);
 
-//Authorizition
+//users 
 app.use(usersRoutes);
+
+//Admin
+app.use(adminRoutes);
 
 
 app.listen(8080);

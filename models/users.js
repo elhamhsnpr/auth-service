@@ -37,6 +37,7 @@ module.exports.UserSchema = {
             errorMessage: 'length_not_6_to_20'
         }
     },
+    'userType':{}
 }    
 // Creat model 
 exports.create = user => {
@@ -46,9 +47,9 @@ exports.create = user => {
             .then(hashedPassword => {
                 user.password = hashedPassword;
                 pgclient.query(
-                    `INSERT INTO users (firstName,lastName,username,password) 
-                             VALUES ($1,$2,$3,$4) RETURNING _id`,
-                    [user.firstName, user.lastName,user.username, user.password]
+                    `INSERT INTO users (firstName,lastName,username,password,userType) 
+                             VALUES ($1,$2,$3,$4,$5) RETURNING _id`,
+                    [user.firstName, user.lastName,user.username, user.password,user.userType]
                     // ['elham','hasanpour','eli123','12345']
                 ).then(
                     function (res) {

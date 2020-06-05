@@ -16,9 +16,12 @@ router.post('/sign-up',
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             username:req.body.username,
-            password: req.body.password
-        })
+            password: req.body.password,
+            userType:req.body.userType
+        
+        })  
             .then(result => {
+
                 console.log(result);
 
                 return next();
@@ -31,6 +34,8 @@ router.post('/sign-up',
             res.status(200).end();
 
 
-    })
+    });
+
+    
 
     module.exports=router;

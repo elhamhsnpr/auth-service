@@ -2,7 +2,7 @@
 const {Pool} = require('pg');
 const async = require('async');
 
-const connectionString = 'postgresql://elham1:123456@localhost:5432/auth_db';
+const connectionString = 'postgresql://postgres:123456@localhost:5432/auth_db';
 
 const pool = new Pool({
     connectionString: connectionString
@@ -27,7 +27,8 @@ async function CreateTable(){
             firstName VARCHAR(45) ,
             lastName VARCHAR(45) ,
             username VARCHAR(45),
-            password VARCHAR(200) 
+            password VARCHAR(200),
+            userType VARCHAR(45)
            );`;
 await pool.query(query).then(
     function (res) {

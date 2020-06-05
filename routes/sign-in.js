@@ -19,7 +19,8 @@ const sing_In=module.exports.signIn = getInfo => {
         getInfo = (req) => {
             return {
                 username: req.body.username,
-                password: req.body.password
+                password: req.body.password,
+                userType: req.body.userType
             };
         };
 
@@ -56,7 +57,8 @@ const sing_In=module.exports.signIn = getInfo => {
                 // Generate Token
                 let users = {
                     id:user._id,
-                    user:user.username
+                    user:user.username,
+                    type:user.usertype
                 };
                 return JWT.GenerateToken(users);
 
