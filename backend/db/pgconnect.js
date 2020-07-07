@@ -6,7 +6,7 @@ const make = require('./makePg');
 
 make();
 
-const connectionString = 'postgresql://postgres:123456@localhost:5432/auth_db';
+const connectionString = 'postgresql://postgres:123456@pg:5432/auth_db';
 
 const pool = new Pool({
     connectionString: connectionString

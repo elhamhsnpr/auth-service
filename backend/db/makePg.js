@@ -33,7 +33,7 @@ async function make() {
 async function createDatabse(){
     const config = {
         user: "postgres",
-        host: "localhost",
+        host: "pg",
         password: "123456",
         port: 5432
       };
@@ -49,7 +49,7 @@ async function createDatabse(){
 
 }
 
-const connectionString = 'postgresql://postgres:123456@localhost:5432/auth_db';
+const connectionString = 'postgresql://postgres:123456@pg:5432/auth_db';
 
 const pool = new Pool({
     connectionString: connectionString
