@@ -3,21 +3,15 @@ This is a Node.js service that supports username and password authentication wit
 
 ## Getting Started
 ### Prerequisites
-* Nodejs
-* Npm
-* Postgres
-
-### Installing
-1. Install dependencies
-```
-npm install
-```
-
+* Docker
+* Docker-compose
 
 ## Run The Server
 ```
-node server.js
+docker-compose up
+
 ```
+The service is running on port 8080.
 
 ### APIs
 The API example has endpoint  /routes to demonstrate  Authentication and roles  based authrization:
