@@ -1,5 +1,5 @@
 const JWT = require('../utils/jwt');
-const pgcleint = require('../db/pgindex');
+const pgcleint = require('../db/pgconnect');
 
 const express = require('express')
 

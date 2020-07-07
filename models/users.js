@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const Promise = require('bluebird');
-const pgclient = require('../db/pgindex');
+const pgclient = require('../db/pgconnect');
 
 const BCRYPT_SALT_ROUNDS = parseInt(process.env.BCRYPT_SALT_ROUNDS);
 

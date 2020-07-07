@@ -1,7 +1,7 @@
 //Sign In
 
 const bcrypt = require('bcrypt');
-const pgclient = require('../db/pgindex');
+const pgclient = require('../db/pgconnect');
 const userModels = require('../models/users');
 const JWT = require('../utils/jwt');
 
