@@ -12,12 +12,6 @@ This is a Node.js service that supports username and password authentication wit
 ```
 npm install
 ```
-2. Manually create postgres database. 
-
-3. Create postgres table 
-```
-node db/make.js
-```
 
 
 ## Run The Server
