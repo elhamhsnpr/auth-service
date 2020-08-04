@@ -3,33 +3,13 @@ const {Pool} = require('pg');
 const async = require('async');
 var pgtools = require('pgtools');
 
-// const config = {
-//     user: "postgres",
-//     host: "localhost",
-//     password: "123456",
-//     port: 5432
-//   };
-  
-//   pgtools.createdb(config, "auth_db", function(err, res) {
-//     if (err) {
-//       console.error(err);
-//       process.exit(-1);
-//     }
-//     console.log(res);
-//   });
-
-
-
-
 async function make() {
     // await DropTable();
     await createDatabse();
     await CreateTable();
-    
-  
-
 
 };
+
 async function createDatabse(){
     const config = {
         user: "postgres",
@@ -80,13 +60,4 @@ await pool.query(query).then(
 
 }
 
-// function f() {
-//     try {
-//         makeTable();
-//     } catch (e) {
-//         console.log(e);
-//     }
-// }
-
-// f();
 module.exports=make;
