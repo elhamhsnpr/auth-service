@@ -1,8 +1,12 @@
 import React , {useState} from 'react';
+
+import './App.css';
 import Header from './components/Header/Header';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
+import LoginForm from './components/LoginForm/LoginForm'
 import Home from './components/Home/Home';
 import Alert from './components/Alert/Alert';
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -17,10 +21,13 @@ function App() {
             <Route path="/" exact={true}>
               <RegistrationForm showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
-            <Route path="/register">
+            <Route path="/signUp">
               <RegistrationForm showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
-            <Route path="/home">
+            <Route path="/signIn">
+              <LoginForm showError={updateErrorMessage} updateTitle={updateTitle}/>
+            </Route>
+            <Route path="/Home">
               <Home/>
             </Route>
           </Switch>

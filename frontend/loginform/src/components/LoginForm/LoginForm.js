@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './RegistrationForm.css';
+import './LoginForm.css';
 import { API_BASE_URL } from '../../constans/apiContants';
 import { withRouter } from "react-router-dom";
 
 
-
-function RegistrationForm(props) {
-
+function LoginForm(props) {
     const [state, setState] = useState({
-        FirstName: "",
-        LastName: "",
         username: "",
         password: "",
-        userType: ""
+        userType: "",
+        successMessage: null
     })
+
 
     const handleChange = (e) => {
         const { id, value } = e.target
@@ -24,86 +22,53 @@ function RegistrationForm(props) {
         }))
     }
 
-    const sendDetailsToServer = () => {
-
+    const handleSubmitClick = (e) => {
+        e.preventDefault();
         const payload = {
-            "firstName": state.firstName,
-            "lastName": state.lastName,
             "username": state.username,
             "password": state.password,
             "userType": state.userType,
         }
-        axios.post(API_BASE_URL + 'sign-up', payload)
+
+
+        axios.post(API_BASE_URL + 'sign-in', payload)
             .then(function (response) {
-                console.log(response);
+                console.log(response)   
+                console.log(Error)
                 if (response.status === 200) {
                     setState(prevState => ({
                         ...prevState,
-                        'successMessage': 'Registration successful  ...'
+                        'successMessage': 'Login successful. Redirecting to home page..'
                     }))
                     redirectToHome();
                     props.showError(null)
-                } else {
-                    props.showError("Some error ocurred");
                 }
+              
             })
             .catch(function (error) {
                 console.log(error);
+                props.showError("Username and password do not match")
             });
-
-
     }
 
     const redirectToHome = () => {
         props.updateTitle('Home')
-        props.history.push('/Home');
+        props.history.push('/home');
     }
-
-    const redirectToLogin = () => {
-        props.updateTitle('SignIn')
-        props.history.push('/signin');
-    }
-
-
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
-
-        sendDetailsToServer()
-
+     const redirectToRegister = () => {
+        props.history.push('/signUp');
+        props.updateTitle('Register');
     }
 
     return (
-        <div className="card col-12 col-lg-4  login-card mt-5 hv-center firstDiv" >
+        <div className="card col-12 col-lg-4  mt-5 hv-center firstDiv">
             <form>
-
                 <div className="form-group text-left">
-                    <label htmlFor="ExampleInputFirstname">First name</label>
-                    <input type="text"
-                        className="form-control"
-                        id="firstName"
-                        placeholder="First name"
-                        value={state.firstName}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="form-group text-left">
-                    <label htmlFor="ExampleInputLastname">Last name</label>
-                    <input type="text"
-                        className="form-control"
-                        id="lastName"
-                        placeholder="Last name"
-                        value={state.lastName}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="form-group text-left">
-                    <label htmlFor="ExampleInputLastname">User name</label>
+                    <label htmlFor="exampleInputEmail1">Username</label>
                     <input type="text"
                         className="form-control"
                         id="username"
-                        placeholder="User name"
+                        placeholder="Enter Username"
                         value={state.username}
                         onChange={handleChange}
                     />
@@ -121,35 +86,33 @@ function RegistrationForm(props) {
                 </div>
 
                 <div className="form-group text-left">
-                    <label htmlFor="ExampleInputLastname">Type</label>
+                    <label htmlFor="exampleInputPassword1">userType</label>
                     <input type="text"
                         className="form-control"
                         id="userType"
-                        placeholder="Type"
+                        placeholder="userType"
                         value={state.userType}
                         onChange={handleChange}
                     />
                 </div>
-
+                <div className="form-check">
+                </div>
                 <button
                     type="submit"
                     className="btn btn-primary"
                     onClick={handleSubmitClick}
-                >
-                    Sign UP
-                </button>
-
-
+                >Submit</button>
             </form>
-            <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
+            <div className="alert alert-success mt-1" style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
                 {state.successMessage}
             </div>
-            <div className="mt-2">
-                <span>Already have an account? </span>
-                <span className="loginText" onClick={() => redirectToLogin()}>Login here</span> 
+            <div className="registerMessage">
+                <span>Dont have an account? </span>
+                <span className="loginText" onClick={() => redirectToRegister()}>signUp</span>
             </div>
+
         </div>
     )
 }
 
-export default withRouter(RegistrationForm);
+export default withRouter(LoginForm);

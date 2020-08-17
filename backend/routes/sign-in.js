@@ -6,7 +6,8 @@ const userModels = require('../models/users');
 const JWT = require('../utils/jwt');
 
 
-const express = require('express')
+const express = require('express');
+const c = require('config');
 
 
 
@@ -36,10 +37,11 @@ const sing_In=module.exports.signIn = getInfo => {
             .then(
                 function (result) {
                     // User not found
-                    if (result === null) throw new Error('username_or_password', 404);
+                
+                    if (result === undefined) throw new Error('username_or_password', 404);
                    
                     user = result.rows[0];
-                    console.log(user)
+                    // console.log(user)
 
 
                     // Check password
@@ -52,6 +54,7 @@ const sing_In=module.exports.signIn = getInfo => {
             .then(compareResult => {
                 // Compare failed
                 if (compareResult === false) throw new Error('Incorroct password', 404);
+               
 
 
                 // Generate Token
@@ -88,7 +91,7 @@ router.post('/sign-in',
 
 sing_In(),
 
- (req,res,next)=>{
+ (req,res   )=>{
     
      res.json(req.signIn)
  }
