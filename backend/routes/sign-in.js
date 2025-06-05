@@ -53,7 +53,7 @@ const sing_In=module.exports.signIn = getInfo => {
             )
             .then(compareResult => {
                 // Compare failed
-                if (compareResult === false) throw new Error('Incorroct password', 404);
+                if (compareResult === false) throw new Error('Incorrect password', 404);
                
 
 
